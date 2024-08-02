@@ -1,8 +1,16 @@
 name: hello-world
 on: push
 jobs:
-  my-job:
+  foo-job:
+    environment: prod
     runs-on: ubuntu-latest
     steps:
-      - name: my-step
-        run: echo "Hello World!"
+      - uses: actions/cache@v4
+
+      - name: foo-step
+        env:
+          FOO: ${{ vars.MY_VARIABLE }}
+          PROD_FOO: ${{ vars.FOO }}
+        run: | 
+          echo "${PROD_FOO}"
+          
