@@ -13,4 +13,5 @@ jobs:
           PROD_FOO: ${{ vars.FOO }}
         run: | 
           echo "${PROD_FOO}"
+          ls
           
