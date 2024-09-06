@@ -3,10 +3,10 @@ on:
   push: 
   workflow_dispatch:
     inputs:
-          dev:
-            description: "Development env to deploy to"
-            required: true
-            type: string
+      dev:
+        description: "Development env to deploy to"
+        required: true
+        type: string
 jobs:
   foo-job:
     environment: prod
