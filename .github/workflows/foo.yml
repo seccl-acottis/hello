@@ -1,12 +1,19 @@
 name: hello-world
-on: [push, workflow_dispatch]
+on:
+  push: 
+  workflow_dispatch:
+    inputs:
+          dev:
+            description: "Development env to deploy to"
+            required: true
+            type: string
 jobs:
   foo-job:
     environment: prod
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      #      - uses: actions/cache@v4
+      # - uses: actions/checkout@v4
+      # #      - uses: actions/cache@v4
 
       - name: foo-step
         env:
@@ -14,5 +21,6 @@ jobs:
           PROD_FOO: ${{ vars.FOO }}
         run: | 
           echo "${PROD_FOO}"
+          echo "${dev}"
           ls
           
