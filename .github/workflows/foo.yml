@@ -21,6 +21,6 @@ jobs:
           PROD_FOO: ${{ vars.FOO }}
         run: | 
           echo "${PROD_FOO}"
-          echo "${dev}"
+          echo ${{ inputs.dev }}
           ls
           
