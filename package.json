@@ -1,0 +1,9 @@
+{
+  "name": "@seccltestorg/hello",
+  "version": "1.0.1",
+  "description": "",
+  "main": "hello.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
