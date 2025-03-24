@@ -1,0 +1,25 @@
+
+name: "Foo"
+
+on: workflow_dispatch
+
+jobs:
+  job1:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - name: CheckAWS
+      id: checkaws
+      run: |
+        if [[ -z "${{ secrets.FOO }}" ]]; then
+          exit 1;
+        fi
+
+  job2:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: Vibe coding
+      if: ${{ jobs.checkaws.conclusion == 'success' }}
+      run: |
+        echo "Hello"
+
