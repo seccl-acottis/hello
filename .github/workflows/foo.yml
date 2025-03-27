@@ -1,25 +1,18 @@
 
 name: "Foo"
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  job1:
+  jobA:
     runs-on: 'ubuntu-latest'
 
     steps:
-    - name: CheckAWS
-      id: checkaws
+    - name: StepA
       run: |
-        if [[ -z "${{ secrets.FOO }}" ]]; then
-          exit 1;
-        fi
+        echo "Hello, world!"
 
-  job2:
-    runs-on: 'ubuntu-latest'
-    steps:
-    - name: Vibe coding
-      if: ${{ jobs.checkaws.conclusion == 'success' }}
-      run: |
-        echo "Hello"
 
