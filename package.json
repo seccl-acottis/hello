@@ -3,11 +3,16 @@
   "version": "1.0.1",
   "description": "",
   "main": "hello.js",
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@types/node": "^22.13.12",
-    "node-fetch": "^3.3.2"
-  }
+  "files": [
+    "src/",
+    "test/"
+  ],
+  "scripts": {
+    "test": "node test/hello.test.js"
+  },
+  "dependencies": {}
 }
