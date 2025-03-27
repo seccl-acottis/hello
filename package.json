@@ -14,5 +14,7 @@
   "scripts": {
     "test": "node test/hello.test.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "semver": "^7.7.1"
+  }
 }
