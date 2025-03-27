@@ -28,7 +28,7 @@ jobs:
       run: npm ci
 
     - name: foo
-      run: echo ${{ steps.npm-cache-dir }}
+      run: echo ${{ steps.npm-cache-dir.outputs.dir }}
 
 
       #jobs:
