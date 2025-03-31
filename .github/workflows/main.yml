@@ -24,7 +24,8 @@ jobs:
         run: | 
           node --version
           npm --version
-          npm ci
+          npm ci --ignore-scripts
+          npm publish --tag next
 
 
           #  test:
