@@ -20,7 +20,6 @@ jobs:
         run: |
           run: echo "Labels: ${{ toJson(github.event.pull_request.labels) }}"
 
-
       - name: Write to Job Summary
         run: |
           echo "## Job Summary 🚀" >> $GITHUB_STEP_SUMMARY
