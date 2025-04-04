@@ -18,7 +18,7 @@ jobs:
 
       - name: Check labels
         run: |
-          echo "Labels: ${{ toJson(github.event.pull_request.labels) }}"
+          echo "Labels: ${{ toJson(github.event.pull_request) }}"
 
       - name: Write to Job Summary
         run: |
