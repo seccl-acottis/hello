@@ -55,12 +55,16 @@ jobs:
     - shell: python
       run: |
         from typing import Dict, Any
-
         needs: Dict[str, Any] = ${{ toJson(needs) }}
 
-        print(needs)
+        failed = False
+        for k, v in needs.items():
+            if v["result"] == "failure":
+                print(f"Failing pipeline because job {k} failed")
+                failed = True
+                break
 
+        if failed:
+            exit(1)
 
     
-
-

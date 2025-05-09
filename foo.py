@@ -11,4 +11,14 @@ needs: Dict[str, Any] = {
     }
 }
 
-print(needs)
+failed = False
+
+for k, v in needs.items():
+    if v["result"] == "failure":
+        print(f"Failing pipeline because job {k} failed")
+        failed = True
+        break
+
+
+if failed:
+    exit(1)
