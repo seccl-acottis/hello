@@ -38,6 +38,7 @@ jobs:
 
   check:
     runs-on: 'ubuntu-latest'
+    needs: ['build']
     steps:
     - run: |
         echo "${{ toJson(needs) }}"
