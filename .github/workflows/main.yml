@@ -39,7 +39,6 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - run: |
-          sleep 20
           exit 1
 
   imSkipped:
@@ -49,7 +48,9 @@ jobs:
       - run: echo "You cant see me"
 
   check:
-    # If any NEEDS are skipped this will not run
+    # If any NEEDS are skipped this will not run if the workflow is cancelled it will be cancelled
+    # Cancelled == Failure
+    # Skip == Sucess
     if: ${{ !cancelled() }}
     runs-on: 'ubuntu-latest'
     needs: ['imSkipped', 'imFailing']
