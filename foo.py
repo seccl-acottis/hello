@@ -2,17 +2,18 @@ import os
 import json
 from typing import Dict, Any
 
-os.environ["NEEDS"] = """{
-    "imSkipped": {
-      "result": "skipped",
-      "outputs": {}
-    },
-    "imFailing": {
-      "result": "failure",
-      "outputs": {}
-    }
-}"""
+#os.environ["NEEDS"] = """{
+#    "imSkipped": {
+#      "result": "skipped",
+#      "outputs": {}
+#    },
+#    "imFailing": {
+#      "result": "failure",
+#      "outputs": {}
+#    }
+#}"""
 
+if os.getenv
 
 print(os.environ.get("NEEDS"))
 needs: Dict[str, Any] = json.loads(os.environ.get("NEEDS"))

@@ -60,10 +60,11 @@ jobs:
     - shell: python
       run: |
         import os
+        import json
         from typing import Dict, Any
-        needs: Dict[str, Any] = ${{ toJson(needs) }}
 
-        print(os.environ.get("NEEDS"))
+        # If there is no needs then default json
+        needs: Dict[str, Any] = json.loads(os.getenv("NEEDS", {}))
 
         failed = False
         for k, v in needs.items():
