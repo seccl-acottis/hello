@@ -43,6 +43,8 @@ jobs:
   imSkipped:
     runs-on: 'ubuntu-latest'
     needs: ['imFailing']
+    steps:
+      - run: echo "You cant see me"
 
   check:
     runs-on: 'ubuntu-latest'
