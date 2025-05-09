@@ -39,7 +39,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - run: |
-          exit 1
+          exit 0
 
   imSkipped:
     runs-on: 'ubuntu-latest'
