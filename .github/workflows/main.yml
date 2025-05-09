@@ -38,7 +38,9 @@ jobs:
   imFailing:
     runs-on: 'ubuntu-latest'
     steps:
-      - run: exit 1
+      - run: |
+          sleep 20
+          exit 1
 
   imSkipped:
     runs-on: 'ubuntu-latest'
