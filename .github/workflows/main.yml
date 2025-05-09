@@ -64,7 +64,7 @@ jobs:
         from typing import Dict, Any
 
         # If there is no needs then default json
-        needs: Dict[str, Any] = json.loads(os.getenv("NEEDS", {}))
+        needs: Dict[str, Any] = json.loads(os.getenv("NEEDSS", {}))
 
         failed = False
         for k, v in needs.items():
