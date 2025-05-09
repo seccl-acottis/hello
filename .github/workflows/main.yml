@@ -54,11 +54,16 @@ jobs:
     if: ${{ !cancelled() }}
     runs-on: 'ubuntu-latest'
     needs: ['imSkipped', 'imFailing']
+    env:
+      NEEDS: ${{ needs }}
     steps:
     - shell: python
       run: |
+        import os
         from typing import Dict, Any
         needs: Dict[str, Any] = ${{ toJson(needs) }}
+
+        print(os.envrion.get("NEEDS"))
 
         failed = False
         for k, v in needs.items():

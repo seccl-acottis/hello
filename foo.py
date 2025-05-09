@@ -1,6 +1,8 @@
+import os
+import json
 from typing import Dict, Any
 
-needs: Dict[str, Any] = {
+os.environ["NEEDS"] = """{
     "imSkipped": {
       "result": "skipped",
       "outputs": {}
@@ -9,8 +11,11 @@ needs: Dict[str, Any] = {
       "result": "failure",
       "outputs": {}
     }
-}
+}"""
 
+
+print(os.environ.get("NEEDS"))
+needs: Dict[str, Any] = json.loads(os.environ.get("NEEDS"))
 failed = False
 
 for k, v in needs.items():
