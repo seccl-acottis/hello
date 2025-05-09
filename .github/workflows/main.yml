@@ -47,6 +47,8 @@ jobs:
       - run: echo "You cant see me"
 
   check:
+    # If any NEEDS are skipped this will not run
+    if: ${{ always() }}
     runs-on: 'ubuntu-latest'
     needs: ['imSkipped']
     steps:
