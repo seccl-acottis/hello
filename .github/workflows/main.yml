@@ -36,18 +36,12 @@ jobs:
           echo "- ❌ Task 3 failed" >> $GITHUB_STEP_SUMMARY
 
 
-      #      - uses: actions/setup-node@v4
-      #        with:
-      #          cache: 'npm'
-      #          node-version-file: 'package.json'
-      #          registry-url: 'https://registry.npmjs.org'
-      #
-      #      - name: Install dependencies
-      #        env:
-      #          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-      #        run: | 
-      #          node --version
-      #          npm --version
-      #          npm ci --ignore-scripts
-      #          npm publish --tag next
+  check:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - run: |
+        echo "${{ toJson(needs) }}"
+
+    
+
 
