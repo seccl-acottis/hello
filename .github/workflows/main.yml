@@ -14,40 +14,68 @@ on:
       - main
 
 jobs:
-  build:
+#  build:
+#    runs-on: 'ubuntu-latest'
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Check labels
+#        run: |
+#          echo "Labels: ${{ toJson(github.event.pull_request.labels) }}"
+#
+#      - name: Check labelss
+#        run: |
+#          echo "Labels: ${{ toJson(github.event) }}"
+#
+#      - name: Write to Job Summary
+#        run: |
+#          echo "## Job Summary 🚀" >> $GITHUB_STEP_SUMMARY
+#          echo "" >> $GITHUB_STEP_SUMMARY
+#          echo "- ✅ Task 1 completed" >> $GITHUB_STEP_SUMMARY
+#          echo "- ⚠️ Task 2 had warnings" >> $GITHUB_STEP_SUMMARY
+#          echo "- ❌ Task 3 failed" >> $GITHUB_STEP_SUMMARY
+
+  imFailing:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/checkout@v4
+      - run: |
+          exit 0
 
-      - name: Check labels
-        run: |
-          echo "Labels: ${{ toJson(github.event.pull_request.labels) }}"
+  imSkipped:
+    if: ${{ !always() }}
+    runs-on: 'ubuntu-latest'
+    steps:
+      - run: echo "You cant see me"
 
-      - name: Check labelss
-        run: |
-          echo "Labels: ${{ toJson(github.event) }}"
+  check:
+    # If any NEEDS are skipped this will not run if the workflow is cancelled it will be cancelled
+    # Cancelled == Failure
+    # Skip == Sucess
+    if: ${{ !cancelled() }}
+    runs-on: 'ubuntu-latest'
+    needs: ['imSkipped', 'imFailing']
+    env:
+      NEEDS: ${{ toJson(needs) }}
+    steps:
+    - shell: python
+      run: |
+        import os
+        import json
+        from typing import Dict, Any
 
-      - name: Write to Job Summary
-        run: |
-          echo "## Job Summary 🚀" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ Task 1 completed" >> $GITHUB_STEP_SUMMARY
-          echo "- ⚠️ Task 2 had warnings" >> $GITHUB_STEP_SUMMARY
-          echo "- ❌ Task 3 failed" >> $GITHUB_STEP_SUMMARY
+        # If there is no needs then default json
+        needs: Dict[str, Any] = json.loads(os.getenv("NEEDS", "{}"))
 
+        failed = False
+        for k, v in needs.items():
+            if v["result"] == "failure":
+                print(f"Failing pipeline because job {k} failed")
+                failed = True
+                break
 
-      #      - uses: actions/setup-node@v4
-      #        with:
-      #          cache: 'npm'
-      #          node-version-file: 'package.json'
-      #          registry-url: 'https://registry.npmjs.org'
-      #
-      #      - name: Install dependencies
-      #        env:
-      #          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-      #        run: | 
-      #          node --version
-      #          npm --version
-      #          npm ci --ignore-scripts
-      #          npm publish --tag next
+        if failed:
+            exit(1)
 
+        print("Pipeline passed")
+
+    
