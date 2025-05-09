@@ -55,7 +55,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     needs: ['imSkipped', 'imFailing']
     env:
-      NEEDS: ${{ needs }}
+      NEEDS: "${{ needs }}"
     steps:
     - shell: python
       run: |
