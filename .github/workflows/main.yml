@@ -50,7 +50,7 @@ jobs:
     # If any NEEDS are skipped this will not run
     if: ${{ always() }}
     runs-on: 'ubuntu-latest'
-    needs: ['imSkipped']
+    needs: ['imSkipped', 'imFailing']
     steps:
     - shell: python
       run: |

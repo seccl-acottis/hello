@@ -4,6 +4,10 @@ needs: Dict[str, Any] = {
     "imSkipped": {
       "result": "skipped",
       "outputs": {}
+    },
+    "imFailing": {
+      "result": "failure",
+      "outputs": {}
     }
 }
 
